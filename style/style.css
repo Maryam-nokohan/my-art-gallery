@@ -15,29 +15,51 @@
   padding: 0;
   box-sizing: border-box;
 }
-.bigContainer{
-  width: 1000px;
-  padding: 7px 70px;
-  margin-left:auto ;
-  margin-right: auto;
-}
-.container{
-    /* text-align: center; */
-      width: 1000px;
-  margin-left:  100px; ;
-  margin-right: 100px;
-
-    
-}
-.main-head{
-   width: 1000px;
-  margin-left:auto ;
-  margin-right: auto;
+.bigContainer {
+  max-width: 1000px;
+  width: 100%;
+  padding: 7px 5%;
+  margin: 0 auto;
 }
 
+.container,
+.main-head {
+  font-size: 50px;
+  /* max-width: 1000px; */
+  /* width: 100%; */
+  /* margin: 0 auto; */
+    width: 1000px;
+  padding: 8px 70px;
+  margin: 1px 1px;
+}
+.text{
+font-size: 40px;
+}
+
+.text,
+.text2 {
+  /* font-size: 50px; */
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: var(--black-dark, #fff);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+#author {
+  border-radius: 50%;
+  border: 6px solid #fffef1;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin: 15px auto;
+  display: block;
+}
 .text {
-  font-size: 70px;
-  letter-spacing: 5px;
+  font-size: 60px;
+  letter-spacing: 1px;
   font-weight: bold;
   color: var(--black-dark);
 }
@@ -55,15 +77,18 @@
 
 .text span:nth-child(1) {
   animation-delay: 0.4s;
-  background-color: 7d8d86;
+  background-color: #7d8d86;
 }
 
 .text span:nth-child(2) {
   animation-delay: 0.5s;
+  background-color: #7d8d86;
+  
 }
 
 .text span:nth-child(3) {
   animation-delay: 0.6s;
+  background-color: #7d8d86;
 }
 
 .text span:nth-child(4) {
@@ -99,10 +124,12 @@
 }
 
 .text2 span:nth-child(2) {
+  background-color: #7d8d86;
   animation-delay: 0.5s;
 }
 
 .text2 span:nth-child(3) {
+  background-color: #7d8d86;
   animation-delay: 0.6s;
 }
 
@@ -148,14 +175,6 @@
 body {
   background-color: #191918;
 }
-#author {
-  border-radius: 50%;
-  border: 6px solid #fffef1;
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  margin-top: 15px;
-}
 body{
     border-top: #fffef1;
 }
@@ -182,7 +201,8 @@ header {
   transform: translateX(-150px);
 }
 .art {
-  width: 80%;
+  width: 100%;
+  height: auto;
   font-size: 70px;
   text-align: center;
   display: block;
@@ -272,10 +292,12 @@ box-shadow: -200px 1px 1px 0px #7d8d86;
   text-align: left;
   padding-left: 142px;
   padding-right: 30px;
+  border:18px solid #7d8d86;
 }
 .list li:nth-child(odd) {
   transform: translateX(+300px);
   text-align: right;
   padding-left: 142px;
   padding-right: 30px;
+  border:18px solid #7d8d86;
 }
