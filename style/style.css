@@ -15,6 +15,24 @@
   padding: 0;
   box-sizing: border-box;
 }
+.bigContainer{
+  width: 1000px;
+  margin-left:auto ;
+  margin-right: auto;
+}
+.container{
+    /* text-align: center; */
+      width: 1000px;
+  margin-left:  100px; ;
+  margin-right: 100px;
+
+    
+}
+.main-head{
+   width: 1000px;
+  margin-left:auto ;
+  margin-right: auto;
+}
 
 .text {
   font-size: 70px;
@@ -163,6 +181,7 @@ header {
   transform: translateX(-150px);
 }
 .art {
+  width: 100%;
   font-size: 70px;
   text-align: center;
   display: block;
