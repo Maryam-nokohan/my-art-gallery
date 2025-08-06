@@ -11,7 +11,7 @@
 *,
 *::before,
 *::after {
-  margin: 0;
+  margin: 20px;
   padding: 0;
   box-sizing: border-box;
 }
@@ -181,7 +181,7 @@ header {
   transform: translateX(-150px);
 }
 .art {
-  width: 100%;
+  width: 80%;
   font-size: 70px;
   text-align: center;
   display: block;
@@ -238,12 +238,12 @@ box-shadow: -200px 1px 1px 0px #7d8d86;
   font-size: 26;
   color: #7d8d86;
   text-align: center;
-  line-height: 2;
+  line-height: 1.5;
 }
 .Contact {
   text-align: center;
   color: #7d8d86;
-  line-height: 2;
+  line-height: 1.5;
 }
 .lin {
   color: #bca88d;
