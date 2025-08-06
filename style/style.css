@@ -17,6 +17,7 @@
 }
 .bigContainer{
   width: 1000px;
+  padding: 7px 70px;
   margin-left:auto ;
   margin-right: auto;
 }
@@ -269,8 +270,12 @@ box-shadow: -200px 1px 1px 0px #7d8d86;
 .list li:nth-child(even) {
   transform: translateX(-300px);
   text-align: left;
+  padding-left: 142px;
+  padding-right: 30px;
 }
 .list li:nth-child(odd) {
   transform: translateX(+300px);
   text-align: right;
+  padding-left: 142px;
+  padding-right: 30px;
 }
