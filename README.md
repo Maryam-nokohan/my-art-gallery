@@ -12,3 +12,9 @@ Welcome to **My Art Gallery** — a minimalist online art showcase designed to d
 1. **Clone the repo**
    ```bash
    git clone https://github.com/Maryam-nokohan/my-art-gallery.git
+
+## License
+
+This repository’s artwork is licensed under CC BY-NC-SA 4.0:
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+

@@ -321,3 +321,22 @@ header {
   padding-right: 30px; */
   border: 18px solid #7d8d86;
 }
+.licensed{
+  font-family: fantasy;
+  color: #7d8d86;
+  line-height: 1.5;
+  text-align: center;
+}
+.licensedLink{
+  color: #bca88d;
+  font-size: 12px;
+  text-align: center;
+}
+.licensedLink:hover{
+  color: #ead8ab;
+  font-weight: bold;
+  font-style: italic;
+  transform: scaleX(-1);
+  display: inline-block;
+  
+}
