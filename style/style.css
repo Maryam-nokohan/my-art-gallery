@@ -15,7 +15,7 @@
   padding: 0;
   box-sizing: border-box;
   text-align: center;
-}
+} 
 
 .bigContainer {
   max-width: 1000px;
@@ -35,6 +35,8 @@
   padding: 7px 70px;
   margin: 1px 1px;
 }
+.container{
+border-bottom: 3px solid #7d8d86;}
 .text {
   font-size: 30px;
 }
@@ -234,10 +236,13 @@ header {
   background-color: rgb(252, 227, 194);
   -webkit-box-shadow: 3px 3px 32px 10px #f1f0e4;
   box-shadow: 3px 3px 32px 10px #f1f0e4;
-  transform: scale(1.03);
+  transform: scale(1.09);
   box-shadow: 0 0 40px rgba(234, 216, 171, 0.5);
   cursor: pointer;
 }
+/* .artImg:hover {
+width: 150%;
+} */
 .artTitle {
   /* display: inline-block; */
   align-self: center;
@@ -268,7 +273,7 @@ header {
   font-size: 25px;
   color: #7d8d86;
   text-align: center;
-  border-top: 8px solid;
+  border-top: 3px solid;
 }
 .about {
   font-size: 26;
