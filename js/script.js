@@ -18,6 +18,7 @@ let targetCameraX = 0;
 const isMobile = window.innerWidth < 768;
 const roomSpacingX = isMobile ? 24 : 35;
 let wallMat, floorMat, ceilingMat, matteMat, textureLoader;
+
 function enterGallerySpace() {
   document.getElementById("enter-cta").style.opacity = "0";
   document.getElementById("entrance-gate").classList.add("open");
@@ -31,10 +32,12 @@ function enterGallerySpace() {
     init3DGallery();
   }, 2000);
 }
+
 function init3DGallery() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x0a0a09);
   scene.fog = new THREE.FogExp2(0x0a0a09, isMobile ? 0.025 : 0.015);
+
   const fov = isMobile ? 65 : 52;
   camera = new THREE.PerspectiveCamera(
     fov,
@@ -42,21 +45,31 @@ function init3DGallery() {
     0.1,
     1000,
   );
+
   if (isMobile) {
     camera.position.set(0, 0.8, 15);
   } else {
     camera.position.set(0, 1.2, 20);
   }
 
-  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    powerPreference: "high-performance",
+  });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.shadowMap.enabled = !isMobile; // Turn off shadows on mobile to save performance
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = !isMobile;
+
+  // Quality Fix: Ensure proper color encoding for realistic textures
+  renderer.outputEncoding = THREE.sRGBEncoding;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.2;
+
   document.getElementById("canvas-container").appendChild(renderer.domElement);
 
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
   scene.add(ambientLight);
+
   const loadingManager = new THREE.LoadingManager();
   const progressPercent = document.getElementById("loader-percentage");
   const progressBar = document.getElementById("loader-bar");
@@ -76,24 +89,30 @@ function init3DGallery() {
 
       setTimeout(() => {
         loaderScreen.style.display = "none";
-      }, 1000); // Match transition duration css rule
+      }, 1000);
     }, 400);
   };
+
   textureLoader = new THREE.TextureLoader(loadingManager);
 
   const wallTexture = textureLoader.load("texture/test.webp");
   wallTexture.wrapS = THREE.RepeatWrapping;
   wallTexture.wrapT = THREE.RepeatWrapping;
   wallTexture.repeat.set(isMobile ? 2 : 3, 2);
+  wallTexture.encoding = THREE.sRGBEncoding; // Quality fix
 
   const floorTexture = textureLoader.load("texture/floor.jpeg");
   floorTexture.wrapS = THREE.RepeatWrapping;
   floorTexture.wrapT = THREE.RepeatWrapping;
   floorTexture.repeat.set(isMobile ? 2 : 4, 4);
+  floorTexture.encoding = THREE.sRGBEncoding; // Quality fix
+
   const ceilingTexture = textureLoader.load("texture/cel.jpeg");
   ceilingTexture.wrapS = THREE.RepeatWrapping;
   ceilingTexture.wrapT = THREE.RepeatWrapping;
   ceilingTexture.repeat.set(4, 4);
+  ceilingTexture.encoding = THREE.sRGBEncoding; // Quality fix
+
   wallMat = new THREE.MeshStandardMaterial({
     map: wallTexture,
     roughness: 0.7,
@@ -110,9 +129,11 @@ function init3DGallery() {
     color: 0x0c0c0b,
     roughness: 0.95,
   });
+
   buildStartingHallway();
   buildRoomModule(0);
   buildRoomModule(1);
+
   const raycaster = new THREE.Raycaster();
   const mouseCoords = new THREE.Vector2();
 
@@ -144,22 +165,27 @@ function init3DGallery() {
 
   animateGalleryFrameLoop();
 }
+
 function buildStartingHallway() {
   const entryZ = 24;
   const entryX = 0;
 
   const doorTexture = textureLoader.load("texture/door.png");
+  doorTexture.encoding = THREE.sRGBEncoding;
+
   const entryWallMat = new THREE.MeshStandardMaterial({
     map: wallMat.map,
     roughness: 0.7,
     side: THREE.DoubleSide,
   });
+
   const entryWall = new THREE.Mesh(
     new THREE.PlaneGeometry(35, 20),
     entryWallMat,
   );
   entryWall.position.set(entryX, 2, entryZ);
   scene.add(entryWall);
+
   const doorGeo = new THREE.PlaneGeometry(
     isMobile ? 4.5 : 6,
     isMobile ? 8.5 : 11,
@@ -170,9 +196,11 @@ function buildStartingHallway() {
     roughness: 0.6,
     side: THREE.DoubleSide,
   });
+
   const doorMesh = new THREE.Mesh(doorGeo, doorMat);
   doorMesh.position.set(entryX, isMobile ? -2.5 : -1.5, entryZ - 0.05);
   scene.add(doorMesh);
+
   const frameThickness = 0.3;
   const frameMaterial = new THREE.MeshStandardMaterial({
     color: 0x0d0805,
@@ -210,6 +238,7 @@ function buildStartingHallway() {
     entryZ - 0.1,
   );
   scene.add(rightTrim);
+
   const entranceLeftWall = new THREE.Mesh(
     new THREE.PlaneGeometry(60, 20),
     new THREE.MeshStandardMaterial({
@@ -221,9 +250,9 @@ function buildStartingHallway() {
 
   entranceLeftWall.rotation.y = Math.PI / 2;
   entranceLeftWall.position.set(-17.5, 2, 6);
-
   scene.add(entranceLeftWall);
 }
+
 function buildRoomModule(roomIndex) {
   const groupOffset = roomIndex * roomSpacingX;
 
@@ -249,6 +278,7 @@ function buildRoomModule(roomIndex) {
   );
   mainWall.position.set(groupOffset, 2, -12);
   scene.add(mainWall);
+
   let artPositions = [];
   if (isMobile) {
     artPositions = [
@@ -291,6 +321,10 @@ function buildRoomModule(roomIndex) {
     artSpot.target = spotTarget;
 
     textureLoader.load(artData.src, function (texture) {
+      // QUALITY FIX: Apply anisotropy and sRGB encoding for sharp, rich textures
+      texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      texture.encoding = THREE.sRGBEncoding;
+
       const imgAspect = texture.image.width / texture.image.height;
       const frameAspect = pos.maxW / pos.maxH;
 
@@ -323,83 +357,110 @@ function buildRoomModule(roomIndex) {
       artMesh.userData = { src: artData.src, title: artData.title };
       clickableObjects.push(artMesh);
       artGroup.add(artMesh);
-      const frameThickness = isMobile ? 0.35 : 0.25;
-      const frameDepth = 0.15;
+
+      // ... (Inside the textureLoader.load callback) ...
+
+      // --- Outer Frame Logic ---
       const frameMaterial = new THREE.MeshStandardMaterial({
-        color: 0x18130f,
-        roughness: 0.5,
-        metalness: 0.2,
+        color: 0x2a2520,
+        roughness: 0.9,
+        metalness: 0.05,
+        side: THREE.DoubleSide,
       });
 
-      const topFrame = new THREE.Mesh(
-        new THREE.BoxGeometry(
-          finalW + frameThickness * 2,
-          frameThickness,
-          frameDepth,
-        ),
-        frameMaterial,
-      );
-      topFrame.position.set(0, finalH / 2 + frameThickness / 2, frameDepth / 2);
-      artGroup.add(topFrame);
+      const frameThickness = isMobile ? 0.4 : 0.3;
+      const frameDepth = 0.25;
+      const innerRimWidth = 0.08;
 
-      const bottomFrame = new THREE.Mesh(
-        new THREE.BoxGeometry(
-          finalW + frameThickness * 2,
-          frameThickness,
-          frameDepth,
-        ),
-        frameMaterial,
+      const createFramePart = (w, h, x, y) => {
+        const mesh = new THREE.Mesh(
+          new THREE.BoxGeometry(w, h, frameDepth),
+          frameMaterial,
+        );
+        mesh.position.set(x, y, frameDepth / 2);
+        artGroup.add(mesh);
+      };
+
+      createFramePart(
+        finalW + frameThickness * 2,
+        frameThickness,
+        0,
+        finalH / 2 + frameThickness / 2,
       );
-      bottomFrame.position.set(
+      createFramePart(
+        finalW + frameThickness * 2,
+        frameThickness,
         0,
         -(finalH / 2 + frameThickness / 2),
-        frameDepth / 2,
       );
-      artGroup.add(bottomFrame);
-
-      const leftFrame = new THREE.Mesh(
-        new THREE.BoxGeometry(frameThickness, finalH, frameDepth),
-        frameMaterial,
-      );
-      leftFrame.position.set(
+      createFramePart(
+        frameThickness,
+        finalH,
         -(finalW / 2 + frameThickness / 2),
         0,
-        frameDepth / 2,
       );
-      artGroup.add(leftFrame);
-
-      const rightFrame = new THREE.Mesh(
-        new THREE.BoxGeometry(frameThickness, finalH, frameDepth),
-        frameMaterial,
-      );
-      rightFrame.position.set(
+      createFramePart(
+        frameThickness,
+        finalH,
         finalW / 2 + frameThickness / 2,
         0,
-        frameDepth / 2,
       );
-      artGroup.add(rightFrame);
+
+      // --- Inner Trim Logic ---
+      const innerRimMat = new THREE.MeshStandardMaterial({
+        color: 0x8b7355,
+        roughness: 0.3,
+        metalness: 0.7,
+      });
+
+      const createInnerRim = (w, h, x, y) => {
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w, h), innerRimMat);
+        mesh.position.set(x, y, 0.16);
+        artGroup.add(mesh);
+      };
+
+      createInnerRim(
+        finalW + innerRimWidth * 2,
+        innerRimWidth,
+        0,
+        finalH / 2 + innerRimWidth / 2,
+      );
+      createInnerRim(
+        finalW + innerRimWidth * 2,
+        innerRimWidth,
+        0,
+        -(finalH / 2 + innerRimWidth / 2),
+      );
+      createInnerRim(
+        innerRimWidth,
+        finalH,
+        -(finalW / 2 + innerRimWidth / 2),
+        0,
+      );
+      createInnerRim(innerRimWidth, finalH, finalW / 2 + innerRimWidth / 2, 0);
+
+      // --- Final Placard ---
       const textPlacard = create3DTagPlacard(artData.title);
       textPlacard.position.set(
         0,
         -(finalH / 2 + frameThickness + (isMobile ? 0.9 : 0.6)),
         0.02,
       );
-
       textPlacard.userData = { src: artData.src, title: artData.title };
       clickableObjects.push(textPlacard);
       artGroup.add(textPlacard);
-    });
+    }); // End of textureLoader.load
 
     scene.add(artGroup);
-  });
-}
+  }); // End of artPositions.forEach
+} // End of buildRoomModule
 
 function create3DTagPlacard(textString) {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
-
   canvas.width = 1024;
   canvas.height = 256;
+
   const goldGradient = ctx.createLinearGradient(
     0,
     0,
@@ -431,7 +492,7 @@ function create3DTagPlacard(textString) {
     ctx.rect(24, 24, 976, 208);
   }
   ctx.stroke();
-  ctx.fillStyle = "#0a0907"; // Solid, deep charcoal ink
+  ctx.fillStyle = "#0a0907";
   ctx.font =
     'bold 56px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
   ctx.textAlign = "center";
@@ -442,16 +503,17 @@ function create3DTagPlacard(textString) {
   ctx.shadowBlur = 1;
   ctx.fillText(textString.toUpperCase(), canvas.width / 2, canvas.height / 2);
   ctx.shadowColor = "transparent";
+
   const texture = new THREE.CanvasTexture(canvas);
-  texture.anisotropy = 8;
+  texture.anisotropy = renderer ? renderer.capabilities.getMaxAnisotropy() : 8;
 
   const material = new THREE.MeshStandardMaterial({
     map: texture,
     roughness: 0.2,
     metalness: 0.8,
-    emissive: new THREE.Color("#ffdf6d"), // A warm golden glow
-    emissiveMap: texture, // Use the canvas texture itself as the glow guide
-    emissiveIntensity: 0.45, // Controls how bright it shines out of the shadows
+    emissive: new THREE.Color("#ffdf6d"),
+    emissiveMap: texture,
+    emissiveIntensity: 0.45,
   });
 
   const mesh = new THREE.Mesh(
@@ -460,18 +522,14 @@ function create3DTagPlacard(textString) {
   );
   return mesh;
 }
+
 let isMoving = false;
 function navigateCorridor(direction) {
   if (isMoving) return;
-
   isMoving = true;
-
   currentRoomIndex += direction;
-
   if (currentRoomIndex < 0) currentRoomIndex = 0;
-
   targetCameraX = currentRoomIndex * roomSpacingX;
-
   buildRoomModule(currentRoomIndex + direction);
 }
 
@@ -493,13 +551,13 @@ function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 }
 
 function focusArt(sourcePath, titleText) {
   const lightbox = document.getElementById("art-lightbox");
   document.getElementById("lightbox-img").src = sourcePath;
   document.getElementById("lightbox-title").innerText = titleText;
-
   lightbox.classList.remove("hidden");
   lightbox.classList.add("flex");
 }
@@ -517,5 +575,3 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft" || e.key.toLowerCase() === "a")
     navigateCorridor(-1);
 });
-
-

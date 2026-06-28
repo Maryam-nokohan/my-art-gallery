@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-    <script src="js/script.js" defer></script>
+    <script src ="js/script.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
@@ -30,12 +30,8 @@
       }
     </style>
   </head>
-  <body
-    class="bg-[#0f0f0e] text-[#e0dfdc] h-screen w-screen overflow-hidden select-none flex flex-col justify-between"
-  >
-    <header
-      class="w-full max-w-7xl mx-auto px-6 py-4 flex items-center justify-between z-30 border-b border-[#7d8d86]/20 bg-[#0f0f0e]/80 backdrop-blur-md absolute top-0 left-1/2 transform -translate-x-1/2 pointer-events-none"
-    >
+<body class="bg-[#0f0f0e] text-[#e0dfdc] h-screen w-screen overflow-hidden select-none relative">
+    <header class="w-full max-w-7xl mx-auto px-6 py-4 flex items-center justify-between z-50 border-b border-[#7d8d86]/20 bg-[#0f0f0e]/80 backdrop-blur-md absolute top-0 left-1/2 transform -translate-x-1/2 pointer-events-none">
       <div class="flex items-center gap-4 pointer-events-auto">
         <img
           id="author"
@@ -44,271 +40,111 @@
           class="w-10 h-10 rounded-full border border-[#fffef1]/40 object-cover"
         />
         <div>
-          <h1
-            class="text-sm font-bold tracking-[0.3em] uppercase text-[#7d8d86]"
-          >
+          <h1 class="text-sm font-bold tracking-[0.3em] uppercase text-[#7d8d86]">
             Mary's Art Gallery
           </h1>
           <p class="text-[9px] tracking-wider text-gray-400">Arts by Mary</p>
         </div>
       </div>
 
-      <div
-        class="text-[11px] text-gray-400 bg-[#191918]/90 px-4 py-1.5 rounded-full border border-[#7d8d86]/20 hidden sm:block pointer-events-auto"
-      >
+      <div class="text-[11px] text-gray-400 bg-[#191918]/90 px-4 py-1.5 rounded-full border border-[#7d8d86]/20 hidden sm:block pointer-events-auto">
         Welcome to My Art Gallery!
       </div>
 
-      
-      <div
-        class="flex items-center gap-5 text-xs text-gray-400 pointer-events-auto"
-      >
-        
-        <a
-          href="https://github.com/Maryam-nokohan"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-1.5 hover:text-[#ead8ab] transition-colors duration-200"
-          title="GitHub Profile"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.0.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-              clip-rule="evenodd"
-            />
-          </svg>
+      <div class="flex items-center gap-5 text-xs text-gray-400 pointer-events-auto">
+        <a href="https://github.com/Maryam-nokohan" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-[#ead8ab] transition-colors duration-200" title="GitHub Profile">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.0.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
           <span class="hidden md:inline">GitHub</span>
         </a>
-
-        
         <span class="h-3 w-[1px] bg-[#7d8d86]/30 hidden md:block"></span>
-
-        
-        <a
-          href="mailto:maryam.nokohan@gmail.com"
-          class="flex items-center gap-1.5 hover:text-[#ead8ab] transition-colors duration-200"
-          title="Send Email"
-        >
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            ></path>
-          </svg>
+        <a href="mailto:maryam.nokohan@gmail.com" class="flex items-center gap-1.5 hover:text-[#ead8ab] transition-colors duration-200" title="Send Email">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 002-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
           <span class="hidden md:inline">maryam.nokohan@gmail.com</span>
         </a>
       </div>
     </header>
 
     <main class="w-full h-full relative flex items-center justify-center">
-      <div
-        id="entrance-gate"
-        class="gallery-entrance absolute inset-0 z-20 flex bg-[#0d0d0c]"
-      >
-        <div
-          class="curtain-left curtain-panel absolute top-0 left-0 w-1/2 h-full bg-[url('texture/curt.jpg')] bg-cover bg-center border-r border-black/60 shadow-[15px_0_30px_rgba(0,0,0,0.9)] flex items-center justify-end pr-12"
-        >
+      <div id="entrance-gate" class="gallery-entrance absolute inset-0 z-20 flex bg-[#0d0d0c]">
+        <div class="curtain-left curtain-panel absolute top-0 left-0 w-1/2 h-full bg-[url('texture/curt.jpg')] bg-cover bg-center border-r border-black/60 shadow-[15px_0_30px_rgba(0,0,0,0.9)] flex items-center justify-end pr-12">
           <div class="w-1 h-5/6 bg-black/20 blur-sm"></div>
         </div>
-
-        <div
-          id="enter-cta"
-          class="z-30 m-auto text-center space-y-4 px-6 max-w-md transition-all duration-700 bg-[#0f0f0e]/90 p-8 rounded-xl border border-[#7d8d86]/20 backdrop-blur-md"
-        >
-          <p class="text-xs tracking-[0.4em] uppercase text-[#bca88d]">
-            Ready?
-          </p>
-          <h2 class="text-xl font-light tracking-wide text-white">
-            Step into the Gallery
-          </h2>
-          <button
-            onclick="enterGallerySpace()"
-            class="mt-4 px-8 py-3 bg-[#7d8d86] text-[#0f0f0e] rounded-sm font-bold tracking-widest uppercase hover:bg-[#ead8ab] hover:scale-105 transition-all shadow-2xl"
-          >
+        <div id="enter-cta" class="z-30 m-auto text-center space-y-4 px-6 max-w-md transition-all duration-700 bg-[#0f0f0e]/90 p-8 rounded-xl border border-[#7d8d86]/20 backdrop-blur-md">
+          <p class="text-xs tracking-[0.4em] uppercase text-[#bca88d]">Ready?</p>
+          <h2 class="text-xl font-light tracking-wide text-white">Step into the Gallery</h2>
+          <button onclick="enterGallerySpace()" class="mt-4 px-8 py-3 bg-[#7d8d86] text-[#0f0f0e] rounded-sm font-bold tracking-widest uppercase hover:bg-[#ead8ab] hover:scale-105 transition-all shadow-2xl">
             Part Curtains
           </button>
         </div>
-
-        <div
-          class="curtain-right curtain-panel absolute top-0 right-0 w-1/2 h-full bg-[url('texture/curt.jpg')] bg-cover bg-center border-l border-black/60 shadow-[-15px_0_30px_rgba(0,0,0,0.9)] flex items-center justify-start pl-12"
-        >
+        <div class="curtain-right curtain-panel absolute top-0 right-0 w-1/2 h-full bg-[url('texture/curt.jpg')] bg-cover bg-center border-l border-black/60 shadow-[-15px_0_30px_rgba(0,0,0,0.9)] flex items-center justify-start pl-12">
           <div class="w-1 h-5/6 bg-black/20 blur-sm"></div>
         </div>
       </div>
 
-      <div
-        id="canvas-container"
-        class="w-full h-full absolute inset-0 z-10 hidden"
-      ></div>
-
-      <div
-        id="gallery-labels"
-        class="absolute inset-0 pointer-events-none z-15 hidden overflow-hidden w-full h-full"
-      ></div>
+      <div id="canvas-container" class="w-full h-full absolute inset-0 z-10 hidden"></div>
+      <div id="gallery-labels" class="absolute inset-0 pointer-events-none z-15 hidden overflow-hidden w-full h-full"></div>
       
-      <div
-        id="gallery-loader"
-        class="absolute inset-0 z-18 hidden flex-col items-center justify-center bg-[#0a0a09] transition-opacity duration-1000 ease-out"
-      >
+      <div id="gallery-loader" class="absolute inset-0 z-18 hidden flex-col items-center justify-center bg-[#0a0a09] transition-opacity duration-1000 ease-out">
         <div class="space-y-4 text-center">
-          
           <div class="relative w-16 h-16 mx-auto">
-            <div
-              class="absolute inset-0 rounded-full border-2 border-[#7d8d86]/10"
-            ></div>
-            <div
-              class="absolute inset-0 rounded-full border-2 border-t-[#ead8ab] animate-spin"
-            ></div>
+            <div class="absolute inset-0 rounded-full border-2 border-[#7d8d86]/10"></div>
+            <div class="absolute inset-0 rounded-full border-2 border-t-[#ead8ab] animate-spin"></div>
           </div>
           <div class="space-y-1">
-            <p
-              class="text-[10px] tracking-[0.4em] uppercase text-[#7d8d86] font-semibold"
-            >
-              Hanging Artwork
-            </p>
-            <p
-              id="loader-percentage"
-              class="text-xs tracking-widest text-[#bca88d] font-light"
-            >
-              0%
-            </p>
+            <p class="text-[10px] tracking-[0.4em] uppercase text-[#7d8d86] font-semibold">Hanging Artwork</p>
+            <p id="loader-percentage" class="text-xs tracking-widest text-[#bca88d] font-light">0%</p>
           </div>
-          
-          <div
-            class="w-32 h-[1px] bg-[#7d8d86]/20 mx-auto overflow-hidden relative rounded-full"
-          >
-            <div
-              id="loader-bar"
-              class="absolute top-0 left-0 bottom-0 w-0 bg-[#ead8ab] transition-all duration-300"
-            ></div>
+          <div class="w-32 h-[1px] bg-[#7d8d86]/20 mx-auto overflow-hidden relative rounded-full">
+            <div id="loader-bar" class="absolute top-0 left-0 bottom-0 w-0 bg-[#ead8ab] transition-all duration-300"></div>
           </div>
         </div>
       </div>
-      <div
-        id="gallery-nav"
-        class="absolute bottom-20 z-30 hidden flex items-center gap-8 bg-[#0f0f0e]/80 px-6 py-3 rounded-full border border-[#7d8d86]/20 backdrop-blur-md"
-      >
-        <button
-          onclick="navigateCorridor(-1)"
-          class="group flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-gray-400 hover:text-[#ead8ab] transition-colors"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2.5"
-            stroke="currentColor"
-            class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
+
+      <div id="gallery-nav" class="absolute bottom-24 md:bottom-20 z-40 hidden flex items-center gap-6 md:gap-8 bg-[#0f0f0e]/90 px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-[#7d8d86]/30 backdrop-blur-md shadow-2xl scale-95 md:scale-100">
+        <button onclick="navigateCorridor(-1)" class="group flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-[#ead8ab] transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:-translate-x-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
-          Previous Wall
+          Prev
         </button>
         <div class="h-4 w-[1px] bg-[#7d8d86]/30"></div>
-        <button
-          onclick="navigateCorridor(1)"
-          class="group flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-gray-400 hover:text-[#ead8ab] transition-colors"
-        >
-          Next Wall
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2.5"
-            stroke="currentColor"
-            class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M8.25 4.5l7.5 7.5-7.5 7.5"
-            />
+        <button onclick="navigateCorridor(1)" class="group flex items-center gap-2 text-[10px] md:text-xs font-bold tracking-widest uppercase text-gray-300 hover:text-[#ead8ab] transition-colors">
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
           </svg>
         </button>
       </div>
 
-      <div
-        id="art-lightbox"
-        class="absolute inset-0 bg-black/95 z-40 hidden flex-col items-center justify-center p-4"
-      >
-        <button
-          onclick="closeLightbox()"
-          class="absolute top-6 right-6 px-5 py-2 rounded-full bg-[#262626] hover:bg-[#7d8d86] text-white hover:text-black transition-colors border border-white/10 text-xs tracking-widest uppercase"
-        >
+      <div id="art-lightbox" class="absolute inset-0 bg-black/95 z-50 hidden flex-col items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 px-5 py-2 rounded-full bg-[#262626] hover:bg-[#7d8d86] text-white hover:text-black transition-colors border border-white/10 text-xs tracking-widest uppercase">
           Return to Gallery
         </button>
-        <div
-          class="max-w-3xl max-h-[75vh] p-3 bg-[#1d1d1c] border-4 border-[#7d8d86] rounded shadow-2xl"
-        >
-          <img
-            id="lightbox-img"
-            class="max-w-full max-h-[68vh] object-contain mx-auto"
-            src=""
-            alt="Inspected Frame Artwork"
-          />
+        <div class="max-w-3xl max-h-[75vh] p-3 bg-[#1d1d1c] border-4 border-[#7d8d86] rounded shadow-2xl">
+          <img id="lightbox-img" class="max-w-full max-h-[68vh] object-contain mx-auto" src="" alt="Inspected Frame Artwork" />
         </div>
-        <h4
-          id="lightbox-title"
-          class="text-md font-bold text-[#ead8ab] mt-4 uppercase tracking-widest"
-        >
+        <h4 id="lightbox-title" class="text-md font-bold text-[#ead8ab] mt-4 uppercase tracking-widest">
           Artwork Title
         </h4>
       </div>
     </main>
 
-    <footer
-      class="w-full bg-[#0a0a09]/90 border-t border-[#7d8d86]/10 py-3 text-[11px] tracking-wide text-gray-500 px-6 z-30 absolute bottom-0 left-0"
-    >
-      <div
-        class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4"
-      >
-        <div class="text-left hidden md:block">
-          <p class="text-gray-400 text-[10px]">
-            <strong>About:</strong>My name is Maryam Nokohan I guess I can't
-            call myself an Artist But these digital artworks were created by me.
-            I hope you enjoy the gallery.
+    <footer class="w-full bg-[#0a0a09]/95 border-t border-[#7d8d86]/20 py-3 text-[10px] md:text-[11px] tracking-wide text-gray-400 px-6 z-30 absolute bottom-0 left-0 backdrop-blur-sm">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4 text-center md:text-left">
+        <div class="hidden md:block max-w-xl">
+          <p class="text-gray-400 text-[10px] leading-relaxed">
+            <strong class="text-[#7d8d86]">About:</strong> My name is Maryam Nokohan. These digital artworks are hosted here for exhibition. Enjoy your corridor walk.
           </p>
         </div>
-        <h6>
-          <a
-            class="text-[#bca88d] hover:text-[#ead8ab]"
-            href="https://maryam-nokohan.github.io/my-art-gallery/"
-            >My-Art-Gallery</a
-          >
-          © 2025 by
-          <a
-            class="text-[#bca88d] hover:text-[#ead8ab]"
-            href="https://github.com/Maryam-nokohan"
-            target="_blank"
-            rel="noopener"
-            >maryam nokohan</a
-          >
-          •
-          <a
-            class="underline"
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-            >CC BY-NC-SA 4.0</a
-          >
-        </h6>
+        <div class="w-full md:w-auto flex flex-wrap justify-center items-center gap-1 text-gray-400 font-light">
+          <a class="text-[#bca88d] hover:text-[#ead8ab] font-medium transition-colors" href="https://maryam-nokohan.github.io/my-art-gallery/">My-Art-Gallery</a>
+          <span>© 2026 by</span>
+          <a class="text-[#bca88d] hover:text-[#ead8ab] font-medium transition-colors" href="https://github.com/Maryam-nokohan" target="_blank" rel="noopener">maryam nokohan</a>
+          <span class="px-1 text-gray-600">•</span>
+          <a class="underline hover:text-[#ead8ab] transition-colors" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+        </div>
       </div>
     </footer>
-      </body>
+
+  </body>
 </html>
